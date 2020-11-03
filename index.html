@@ -1,25 +1,131 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Gaetan SOPPE - AI programmer</title>
-  <meta name="description" content="Gaetan SOPPE - AI programmer">
-  <meta name="author" content="GaetanSOPPE">
+<meta name="viewport" content="width=device-width, initial-scale=1" /> 
+<meta charset="utf-8">
+<title>GLM Studio</title>
+<meta name="description" content="GLM Studio">
+<meta name="author" content="GLM Studio">
+<STYLE type="text/css">
+font-family:calibri
+H1.cv {
+	font-family: 'Roboto', sans-serif;
+	text-align: center;
+}
 
- <STYLE type="text/css">
-  H1.cv {text-align: center}
- </STYLE>
- 
+mark { 
+font-family: 'Roboto', sans-serif;
+  background-color: #FFFFFFAA;
+  color: black;
+}
+.menu {
+font-family: 'Roboto', sans-serif;
+        position: fixed;
+		background-color : #E6EFFD;
+		top: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 60px;
+		font-size: 40px;
+}
+.corps {
+font-family: 'Roboto', sans-serif;
+        margin-top: 50px;
+		background-color : #b8cce4;
+        width: 100%;
+}		
+</STYLE>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet"> 
 </head>
-<body style="background-color:#b8cce4;">
-<div align=center>
-<H1 class="cv"> Curriculum Vitae </H1>
+<body>
+<div align=right class="menu">
+GLM Studio
++
+<a href="mailto:gaetan.soppe@gmail.com">Ecrivez-nous</a>
++
+<a href="https://www.linkedin.com/in/gaetansoppe" class="social-icon si-rounded si-small si-linkedin" target="_blank">
+<i class="fa fa-linkedin-square"></i>
+ </a>
+ 
+</div>
+<div class="corps">
 <HR>
-<img src="cv1.png">
+<div align=center>
+<H1 class="cv">Presentation</H1>
+<div align=left>
+About GLM:<br>
+Created by Gaetan Soppe, GLM is a french independant video games studio.<br>
+Gaetan is an expert in gameplay programming, with a Master's degree in Video Games.<br>
+<br>
+</div>
+<HR>
+Programmation informatique en C++<br><br>
+Skills<br><br>
+<table style="width:100%">
+<tr>
+<td>French</td><td>★★★★★</td>
+<td>English</td><td>★★★★★</td>
+<td>Spanish</td><td>★★☆☆☆</td>
+</tr>
+<tr>
+<td>C++</td><td>★★★★☆</td>
+<td>C#</td><td>★★☆☆☆</td>
+<td>C</td><td>★★★☆☆</td>
+</tr>
+<tr>
+<td>Office</td><td>★★★★☆</td>
+<td>Photoshop</td><td>★★☆☆☆</td>
+<td>SVN</td><td>★★★★★</td>
+</tr>
+</table>
+
+<HR>
+<H1 class="cv">Réalisations</H1>
+<table style="width:100%">
+  <tr>
+    <th background="img/cp2077.png" alt="Cyberpunk2077" style="font-size:300%;color:white;height:250px;width:30%;background-size: 100% 100%"><mark>Cyberpunk 2077</mark></th>
+    <th background="img/vrally4.png" alt="VRally4" style="font-size:300%;color:white;height:250px;width:30%;background-size: 100% 100%"><mark>VRally4</mark></th>
+    <th background="img/wrc7.png" alt="WRC7" style="font-size:300%;color:white;height:250px;width:30%;background-size: 100% 100%"><mark>WRC7</mark></th>
+  </tr>  
+  <tr>
+    <th background="img/flatout4.png" alt="Flatout4" style="font-size:300%;color:white;height:250px;width:30%;background-size: 100% 100%"><mark>Flatout4</mark></th>
+    <th background="img/origami.jpg" alt="Origami Challenge" style="font-size:300%;color:white;height:250px;width:30%;background-size: 100% 100%"><mark>Origami Challenge</mark></th>
+    <th background="img/godsofrome.png" alt="Gods Of Rome" style="font-size:300%;color:white;height:250px;width:30%;background-size: 100% 100%"><mark>Gods Of Rome</mark></th>
+  </tr>
+  <tr>
+    <th background="img/realfootball2013.jpg" alt="Real Football 2013" style="font-size:300%;color:white;height:250px;width:30%;background-size: 100% 100%"><mark>Real Football 2013</mark></th>
+    <th background="img/giana-sisters.jpg" alt="Giana Sisters: Twisted Dreams" style="font-size:300%;color:white;height:250px;width:30%;background-size: 100% 100%"><mark>Giana Sisters: Twisted Dreams</mark></th>
+    <th background="img/hasta-la-muerte.jpg" alt="Hasta La Muerte" style="font-size:300%;color:white;height:250px;width:30%;background-size: 100% 100%"><mark>Hasta La Muerte</mark></th>
+  </tr>
+  
+</table>
 <hr>
-<img src="cv2.png">
+<H1 class="cv">Contact</H1>
+
+<form action="mailto:gaetan.soppe@gmail.com" method="post" enctype="text/plain">
+    <div>
+        <label for="name">Nom :</label>
+        <input type="text" id="name" name="user_name">
+    </div>
+    <div>
+        <label for="mail">Email:</label>
+        <input type="email" id="mail" name="user_mail">
+    </div>
+    <div>
+        <label for="msg">Message :</label>
+        <textarea id="msg" name="user_message"></textarea>
+    </div>
+	
+	<div class="button">
+        <button type="submit">Envoyer le message</button>
+    </div>
+	
+</form>
 <hr>
-<div> Gaetan Soppe - 2020 - All Rights Reserved</div>
+<div>© GLM Studio - All Rights Reserved</div>
+</div>
 </div>
 </body>
 </html>
