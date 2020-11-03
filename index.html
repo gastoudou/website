@@ -7,39 +7,96 @@
 <meta name="description" content="GLM Studio">
 <meta name="author" content="GLM Studio">
 <STYLE type="text/css">
-font-family:calibri
 H1.cv {
 	font-family: 'Roboto', sans-serif;
 	text-align: center;
+  color: white;
+		background-color : #000000;
 }
 
 mark { 
 font-family: 'Roboto', sans-serif;
   background-color: #FFFFFFAA;
   color: black;
+		font-size: 12px;
 }
 .menu {
 font-family: 'Roboto', sans-serif;
         position: fixed;
-		background-color : #E6EFFD;
+		background-color : #000000;
 		top: 0;
         left: 0;
         right: 0;
         width: 100%;
         height: 60px;
-		font-size: 40px;
+		font-size: 12px;
+  color: white;
 }
 .corps {
 font-family: 'Roboto', sans-serif;
         margin-top: 50px;
-		background-color : #b8cce4;
+		background-color : #000000;
         width: 100%;
+		font-size: 12px;
+  color: white;
 }		
+table, th, td {
+  border: 1px solid white;
+  border-collapse: collapse;
+  padding: 25px;
+}
+table {
+  border-spacing: 25px;
+}
+
+	textarea{
+		font-size: 1.5em;
+		height: 1.5em;
+		width:100%;
+		background-color: white;
+		border: none;
+  		border-bottom: solid 2px #3c3c3c;
+		-webkit-box-sizing: content-box;
+		-moz-transition: all 1s;
+		-webkit-transition: all 1s;
+  		transition: all 1s;
+	}
+	textarea:focus{
+		height: 4.5em;
+
+	}
+	input[type=text], input[type=date], input[type=email], select{
+		font-size: 1.5em;
+		height: 1.5em;
+		background-color: white;
+		border: none;
+		width:100%;
+  		border-bottom: solid 2px #3c3c3c;
+  		transition: border 0.3s;
+	}
+	
+	input[type=submit]{
+		font-size: 1.5em;
+		height: 1.5em;
+		background-color: transparent;
+		border: none;
+  		transition: border 0.3s;
+  		font-size: 2em;
+  		text-align: center;
+  		font-weight: bold;
+  		color: #fff;
+	}
+
+	.submit{
+		background-color: #ff0000;
+		margin: auto;
+		text-align: center;
+	}
 </STYLE>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet"> 
 </head>
-<body>
+<body style="background-color : #000000;">
 <div align=right class="menu">
 GLM Studio
 +
@@ -50,24 +107,34 @@ GLM Studio
  </a>
  
 </div>
-<div class="corps">
+<div class="corps" align=center>
 <HR>
-<div align=center>
 <H1 class="cv">Presentation</H1>
-<div align=left>
+<HR>
+<div class="corps" align=left>
 About GLM:<br>
 Created by Gaetan Soppe, GLM is a french independant video games studio.<br>
 Gaetan is an expert in gameplay programming, with a Master's degree in Video Games.<br>
 <br>
 </div>
 <HR>
-Programmation informatique en C++<br><br>
-Skills<br><br>
+<H1 class="cv">Skills</H1>
+<HR>
 <table style="width:100%">
 <tr>
-<td>French</td><td>★★★★★</td>
-<td>English</td><td>★★★★★</td>
-<td>Spanish</td><td>★★☆☆☆</td>
+<td style="background-color:#FF1111;">French</td><td>★★★★★</td>
+<td style="background-color:#FF1111;">English</td><td>★★★★★</td>
+<td style="background-color:#FF1111;">Spanish</td><td>★★☆☆☆</td>
+</tr>
+<tr>
+<td>Perforce</td><td>★★★★☆</td>
+<td>Wwise</td><td>★★☆☆☆</td>
+<td>SCRUM</td><td>★★★★☆</td>
+</tr>
+<tr>
+<td style="background-color:#FF1111;">Office</td><td>★★★★☆</td>
+<td style="background-color:#FF1111;">Photoshop</td><td>★★☆☆☆</td>
+<td style="background-color:#FF1111;">SVN</td><td>★★★★★</td>
 </tr>
 <tr>
 <td>C++</td><td>★★★★☆</td>
@@ -75,14 +142,16 @@ Skills<br><br>
 <td>C</td><td>★★★☆☆</td>
 </tr>
 <tr>
-<td>Office</td><td>★★★★☆</td>
-<td>Photoshop</td><td>★★☆☆☆</td>
-<td>SVN</td><td>★★★★★</td>
+<td style="background-color:#FF1111;">Unreal Engine</td><td>★★☆☆☆</td>
+<td style="background-color:#FF1111;">Unity</td><td>★★★☆☆</td>
+<td style="background-color:#FF1111;">PhysX</td><td>★★★☆☆</td>
 </tr>
+
 </table>
 
 <HR>
 <H1 class="cv">Réalisations</H1>
+<HR>
 <table style="width:100%">
   <tr>
     <th background="img/cp2077.png" alt="Cyberpunk2077" style="font-size:300%;color:white;height:250px;width:30%;background-size: 100% 100%"><mark>Cyberpunk 2077</mark></th>
@@ -103,29 +172,28 @@ Skills<br><br>
 </table>
 <hr>
 <H1 class="cv">Contact</H1>
-
+<HR>
 <form action="mailto:gaetan.soppe@gmail.com" method="post" enctype="text/plain">
-    <div>
+    <div class="corps">
         <label for="name">Nom :</label>
         <input type="text" id="name" name="user_name">
     </div>
-    <div>
+    <div class="corps">
         <label for="mail">Email:</label>
         <input type="email" id="mail" name="user_mail">
     </div>
-    <div>
+    <div class="corps">
         <label for="msg">Message :</label>
         <textarea id="msg" name="user_message"></textarea>
     </div>
 	
-	<div class="button">
-        <button type="submit">Envoyer le message</button>
-    </div>
+		<div class="submit">
+			<input type="submit" value="SUBMIT">
+		</div>
 	
 </form>
 <hr>
 <div>© GLM Studio - All Rights Reserved</div>
-</div>
 </div>
 </body>
 </html>
