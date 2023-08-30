@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<title>Sapin Magique</title>
+
+<script>
+    function includeHTML() {
+        var z, i, elmnt, file, xhttp;
+        /*loop through a collection of all HTML elements:*/
+        z = document.getElementsByTagName("*");
+        for (i = 0; i < z.length; i++) {
+            elmnt = z[i];
+            /*search for elements with a certain attribute:*/
+            file = elmnt.getAttribute("w3-include-html");
+            if (file) {
+                /*make an HTTP request using the attribute value as the file name:*/
+                xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function () {
+                    if (this.readyState == 4) {
+                        if (this.status == 200) { elmnt.innerHTML = this.responseText; }
+                        if (this.status == 404) { elmnt.innerHTML = "Page not found."; }
+                        /*remove the attribute, and call this function once more:*/
+                        elmnt.removeAttribute("w3-include-html");
+                        includeHTML();
+                    }
+                }
+                xhttp.open("GET", file, true);
+                xhttp.send();
+                /*exit the function:*/
+                return;
+            }
+        }
+    };
+</script>
+
+<head>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <div class="header">
+        <h1><a href="index.html">L'IA dans les jeux vidéos</a></h1>
+        <a href="https://www.linkedin.com/in/gaetansoppe" target="_blank"><i style="font-size:24px" class="fa">&#xf08c;</i></a>
+        &nbsp;
+        &nbsp;
+        <a href="mailto:gaetan.soppe@gmail.com?subject=Contact" target="_blank"><i style="font-size:24px" class="fa">&#xf0e0;</i></a>
+        &nbsp;
+        &nbsp;
+        <a href="coders_digest_list.html">[Coder's Digest]</a>
+        <hr>
+    </div>
+    <div>
+        <p>&nbsp;</p><p>&nbsp;</p>
+        <div w3-include-html="links.html"></div>
+        <p>&nbsp;</p><p>&nbsp;</p>
+    </div>
+
+    <div class="footer">
+        <small>
+            ©2023 Gaetan Soppe - All rights reserved
+        </small>
+    </div>
+    <script>includeHTML();</script>
+</body>
+</html>
