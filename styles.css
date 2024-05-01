@@ -68,3 +68,7 @@ blockquote
   border-left: 8px solid #CCC;
   padding-left: 12px;
 }
+
+img {
+  max-width: 80%;
+}
