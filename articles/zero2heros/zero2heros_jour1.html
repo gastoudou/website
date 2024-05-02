@@ -73,24 +73,68 @@
 			Le code actuel dans la classe Agent:
 		</p>
 		<p>
-			<iframe
-				src="https://carbon.now.sh/embed?bg=rgba%28255%2C255%2C255%2C0%29&t=material&wt=boxy&l=text%2Fx-c%2B%2Bsrc&width=950&ds=false&dsyoff=20px&dsblur=68px&wc=true&wa=false&pv=0px&ph=0px&ln=false&fl=1&fm=Hack&fs=14px&lh=133%25&si=false&es=2x&wm=true&code=%2523pragma%2520once%250A%250Aclass%2520Agent%250A%257B%250Apublic%253A%250A%2509Agent%28%29%253B%250A%2509%7EAgent%28%29%253B%250A%250A%2509void%2520Init%28%29%253B%250A%2509void%2520Update%28%2520const%2520float%2520_dt%2520%29%253B%250A%2509void%2520Shutdown%28%29%253B%250A%257D%253B%250A"
-				style="width: 950px; height: 299px; border:0;">
-			</iframe>
+		<pre class="prettyprint">
+				<code class="language-cpp">
+	#pragma once
+
+	class Agent
+	{
+	public:
+		Agent();
+		~Agent();
+	
+		void Init();
+		void Update( const float _dt );
+		void Shutdown();
+	};
+			</code>
+		</pre>
 		</p>
 		<p>
-			<iframe
-				src="https://carbon.now.sh/embed?bg=rgba%28255%2C255%2C255%2C0%29&t=material&wt=boxy&l=text%2Fx-c%2B%2Bsrc&width=950&ds=false&dsyoff=20px&dsblur=68px&wc=true&wa=false&pv=0px&ph=0px&ln=false&fl=1&fm=Hack&fs=14px&lh=133%25&si=false&es=2x&wm=true&code=%2523include%2520%2522stdafx.h%2522%250A%2523include%2520%2522Agent.h%2522%250A%250AAgent%253A%253AAgent%28%29%2520%253D%2520default%253B%250AAgent%253A%253A%7EAgent%28%29%2520%253D%2520default%253B%250A%250Avoid%2520Agent%253A%253AInit%28%29%250A%257B%250A%250A%257D%250A%250Avoid%2520Agent%253A%253AUpdate%28%2520const%2520float%2520_dt%2520%29%250A%257B%250A%2509std%253A%253Acout%2520%253C%253C%2520%2522Je%2520parle%2520%28%2522%2520%253C%253C%2520_dt%2520%253C%253C%2520%2522%29%2522%2520%253C%253C%2520std%253A%253Aendl%253B%250A%257D%250A%250Avoid%2520Agent%253A%253AShutdown%28%29%250A%257B%250A%250A%257D%250A"
-				style="width: 950px; height: 448px; border:0;">
-			</iframe>
+			<pre class="prettyprint">
+				<code class="language-cpp">
+	#include "stdafx.h"
+	#include "Agent.h"
+	
+	Agent::Agent() = default;
+	Agent::~Agent() = default;
+	
+	void Agent::Init()
+	{
+	
+	}
+	
+	void Agent::Update( const float _dt )
+	{
+		std::cout << "Je parle (" << _dt << ")" << std::endl;
+	}
+	
+	void Agent::Shutdown()
+	{
+	
+	}
+			</code>
+		</pre>
 		</p>
 		</p>
 		<p>Dans le main, on appelle juste une fois l'update:</p>
 		<p>
-			<iframe
-				src="https://carbon.now.sh/embed?bg=rgba%28255%2C255%2C255%2C0%29&t=material&wt=boxy&l=text%2Fx-c%2B%2Bsrc&width=950&ds=false&dsyoff=20px&dsblur=68px&wc=true&wa=false&pv=0px&ph=0px&ln=false&fl=1&fm=Hack&fs=14px&lh=133%25&si=false&es=2x&wm=true&code=%2523include%2520%2522stdafx.h%2522%250A%250A%2523include%2520%2522AI%255CAgent%255CAgent.h%2522%250A%250Aint%2520main%28%29%250A%257B%250A%2509Agent%2520a%253B%250A%2509a.Update%28%25200.033f%2520%29%253B%250A%250A%2509system%28%2520%2522pause%2522%2520%29%253B%250A%2509return%25200%253B%250A%257D%250A"
-				style="width: 950px; height: 299px; border:0;">
-			</iframe>
+			<pre class="prettyprint">
+				<code class="language-cpp">
+	#include "stdafx.h"
+
+	#include "AI\Agent\Agent.h"
+	
+	int main()
+	{
+		Agent a;
+		a.Update( 0.033f );
+	
+		system( "pause" );
+		return 0;
+	}
+			</code>
+		</pre>
 		</p>
 		<p>Et le résultat:</p>
 		<p><img src="../img/result_agent_init.png" alt="Résultat"></p>
