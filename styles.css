@@ -1,7 +1,6 @@
 body {
     background-color: #E5E4E2;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode';
-    /*font-family: 'Courier New', Courier, monospace;*/
     color: rgb(50, 10, 10);
 }
 
@@ -19,7 +18,7 @@ a {
     color: black;
 }
 a:hover {
-    color: rgb(0, 0, 185);
+    color: rgb(200, 0, 0);
 }
 
 .footer {
