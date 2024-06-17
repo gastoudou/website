@@ -31,19 +31,18 @@
         <p>&nbsp;</p>
         <p><b>Zero2Heros : <u>State Machine</u></b></p>
         <p>
-            Maintenant que l'on a l'Agent qui fonctionne, nous allons ajouter une State Machine.<br />
-            Qu'est-ce qu'une State Machine ? Une machine à état, littéralement.<br />
-            Simplement, une structure de données permettant la gestion des états. Cela permet doe jouer un état, changer
-            d'état, etc.<br />
-            Mais surtout, quel est un état ? C'est le comportement actuel de l'agent.<br />
-            Par exemple, quand l'agent ne fait rien (aucune action avec la manette), il est dans l'état d'ATTENTE. En
-            anglais, on utilise le terme IDLE.<br />
-            Si nous prenons l'agent qui représente le joueur dans un jeu, tant que le joueur ne fait rien (aucun
-            mouvement
-            de sa touche), l'agent est en ATTENTE.<br />
-            Lorsque le joueur appuie sur la touche de saut, l'agent passe à l'état SAUT. À la réception du saut, si le
-            joueur n'a pas fait d'action, l'agent repasse dans le état ATTENTE.<br />
-            On voit qu'il y a un lien entre les états, que nous pouvons représenter comme ceci:
+            Maintenant que l'on a l'Agent qui fonctionne, nous allons ajouter une State Machine (ou machine à état) !<br />
+            <br />
+            Qu'est-ce qu'une State Machine ? C'est littéralement une machine à états. Simplement, c'est une structure de
+            données permettant la gestion des états. Elle permet de jouer un état, de changer d'état, etc.<br />
+            <br />
+            Mais surtout, qu'est-ce qu'un état ? C'est le comportement actuel de l'agent. Par exemple, lorsque l'agent ne fait rien (aucune action avec la manette), il est dans l'état
+            d'attente (IDLE en anglais). Si nous prenons l'agent qui représente le joueur dans un jeu, tant que le joueur ne fait rien (aucun mouvement de sa touche), l'agent est en
+            attente.<br />
+            <br />
+            Lorsque le joueur appuie sur la touche de saut, l'agent passe à l'état SAUT. À la réception du saut, si le joueur n'a pas fait d'action, l'agent repasse dans l'état ATTENTE.<br />
+            <br />
+            On voit qu'il y a un lien entre les états, que nous pouvons représenter comme suit :
         </p>
         <pre>
         <code class="language-mermaid">
@@ -53,31 +52,34 @@
             ```
             </code>
         </pre>
-        <p>Dans cet exemple, notre machine à états (State Machine) possède deux états distincts.<br />
-            Nous allons donc ajouter ces deux états dans notre code.<br />
-            Cependant, avant d'ajouter la classe STATE (état), il est important de noter que ATTENTE et SAUT sont des réalisations du concept d'état.<br />
-            En C++, pour illustrer cette idée, nous utilisons les classes abstraites. Une classe abstraite est une classe dont on ne peut pas instancier car certaines fonctions
-            n'ont pas de définition. Dans notre cas, le concept d'état se présente sous la forme d'une classe abstraite. Les fonctions d'entrée, mise à jour et sortie ne seront pas spécifiées, mais elles seront définies dans les classes dérivées.<br />
-        </p>
+        <p>Dans cet exemple, notre machine à états (State Machine) possède deux états distincts.
+            <br />
+            Nous allons donc ajouter ces deux états dans notre code.
+            <br />
+            Cependant, avant d'ajouter la classe STATE (état), il est important de noter que ATTENTE et SAUT sont des réalisations du concept d'état.
+            <br />
+            En C++, pour illustrer cette idée, nous utilisons les classes abstraites. Une classe abstraite est une classe dont on ne peut pas instancier car certaines fonctions n'ont pas
+            de définition. Dans notre cas, le concept d'état se présente sous la forme d'une classe abstraite. Les fonctions d'entrée, mise à jour et sortie ne seront pas spécifiées, mais
+            elles seront définies dans les classes dérivées.</p>
         <pre class="prettyprint">
         <code class="language-cpp">
     class STATE
     {
         public:
-            void Enter() = 0;
-            void Update( float dt ) = 0;
-            void Exit() = 0;
+            virtual void Enter() = 0;
+            virtual void Update( float dt ) = 0;
+            virtual void Exit() = 0;
     };
                 </code>
             </pre>
 
-        <p>
-            La classe STATE est donc abstraite (aussi appelee Interface, donc souvent nommee ISTATE), et on ne peut pas
-            creer d'objet a partir d'elle. Nous avons besoin d'avoir des classes enfants qui definiront les fonctions notees
-            "= 0".
-        </p>
+            <p>On note l'apparition de mots-clés `virtual`, ainsi que `= 0`. Pour en savoir plus sur les fonctions virtuelles et les vtables, je vous recommande de consulter le lien
+                suivant : <a href="https://blog.darbotron.com/the-lost-c-c-low-level-curriculum-e1bb290d29e">https://blog.darbotron.com/the-lost-c-c-low-level-curriculum-e1bb290d29e</a>.
+                
+                La classe STATE est donc abstraite (aussi appelée Interface, donc souvent nommée ISTATE), et il n'est pas possible de créer d'objet à partir d'elle. Nous avons besoin d'avoir
+                des classes enfants qui définiront les fonctions notées `= 0`.</p>
 
-        <p>Le code pour creer les classes etat d'attente et etat de saut est le suivant.</p>
+                <p>Le code pour créer les classes état d'attente et état de saut est le suivant :</p>
         <p>
             <pre class="prettyprint">
             <code class="language-cpp">
