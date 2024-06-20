@@ -9,6 +9,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mermaid@8.2.6/dist/mermaid.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@8.14.0/dist/mermaid.min.js"></script>
 </head>
 
 <body>
@@ -70,13 +71,13 @@
         </p>
         <pre class="prettyprint">
 <code class="language-cpp">
-class STATE
-{
-    public:
-        virtual void Enter() = 0;
-        virtual void Update( float dt ) = 0;
-        virtual void Exit() = 0;
-};
+    class STATE
+    {
+        public:
+            virtual void Enter() = 0;
+            virtual void Update( float dt ) = 0;
+            virtual void Exit() = 0;
+    };
 </code>
 </pre>
 
@@ -93,45 +94,45 @@ class STATE
         <p>
             <pre class="prettyprint">
                 <code class="language-cpp">
-class IDLE final : public STATE
-{
-    public:
-    void Enter() override
+    class IDLE final : public STATE
     {
-    }
-
-    void Update( float dt ) override
-    {
-        // if m_is_jumping is false and we are pressing the jump button
-        // set next state to jump
-    }
-
-    void Exit() override
-    {
-    }
-
-    private:
-        bool m_is_jumping = false;
-};
-                </code>
-            </pre>
-            <pre class="prettyprint">
-                <code class="language-cpp">
-class JUMP final : public STATE
-{
-    public:
+        public:
         void Enter() override
         {
         }
 
         void Update( float dt ) override
         {
+            // if m_is_jumping is false and we are pressing the jump button
+            // set next state to jump
         }
 
         void Exit() override
         {
         }
-};
+
+        private:
+            bool m_is_jumping = false;
+    };
+                </code>
+            </pre>
+            <pre class="prettyprint">
+                <code class="language-cpp">
+    class JUMP final : public STATE
+    {
+        public:
+            void Enter() override
+            {
+            }
+
+            void Update( float dt ) override
+            {
+            }
+
+            void Exit() override
+            {
+            }
+    };
                 </code>
             </pre>
         </p>
