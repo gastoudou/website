@@ -7,8 +7,7 @@
     <link rel="stylesheet" href="../../styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
-    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mermaid@8.2.6/dist/mermaid.min.css">
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>      
     <script src="https://cdn.jsdelivr.net/npm/mermaid@8.14.0/dist/mermaid.min.js"></script>
 </head>
 
@@ -51,9 +50,10 @@
             On voit qu'il y a un lien entre les états, que nous pouvons représenter comme suit :
         </p>
     </div>
-    <div class="mermaid">
-        graph LR;
-        A[ATTENTE] --> B[SAUT];
+    <div class="mermaid" style="margin-left:60px">
+graph LR;
+A[ATTENTE] --press jump--> B[SAUT];
+B --> A;
     </div>
     <div>
         <p>Dans cet exemple, notre machine à états (State Machine) possède deux états distincts.
@@ -81,15 +81,12 @@
 </code>
 </pre>
 
-        <p>On note l'apparition de mots-clés `virtual`, ainsi que `= 0`. Pour en savoir plus sur les fonctions
+        <p>On note l'apparition de mots-clés <code>virtual</code>, ainsi que <code>= 0</code>. Pour en savoir plus sur les fonctions
             virtuelles et les vtables, je vous recommande de consulter le lien
-            suivant : <a
-                href="https://blog.darbotron.com/the-lost-c-c-low-level-curriculum-e1bb290d29e">https://blog.darbotron.com/the-lost-c-c-low-level-curriculum-e1bb290d29e</a>.
-
-            La classe STATE est donc abstraite (aussi appelée Interface, donc souvent nommée ISTATE), et il n'est pas
-            possible de créer d'objet à partir d'elle. Nous avons besoin d'avoir
-            des classes enfants qui définiront les fonctions notées `= 0`.</p>
-
+            suivant : <a href="https://blog.darbotron.com/the-lost-c-c-low-level-curriculum-e1bb290d29e">https://blog.darbotron.com/c-low-level</a>.<br />
+            La classe STATE est donc <b>abstraite</b> (aussi appelée Interface, donc souvent nommée ISTATE), et il n'est pas
+            possible de créer d'objet à partir d'elle.<br/>
+            Nous avons besoin d'avoir des classes enfants qui définiront les fonctions notées <code>= 0</code>.</p>
         <p>Le code pour créer les classes état d'attente et état de saut est le suivant :</p>
         <p>
             <pre class="prettyprint">
@@ -137,6 +134,43 @@
             </pre>
         </p>
 
+        <p>
+            Nous avons besoin de créer une classe STATE_MACHINE qui contiendra les états et leurs transitions.<br/>
+            Cette classe doit pouvoir ajouter et retirer des états à la machine (changer l'etat courant).
+            <pre class="prettyprint">
+                <code class="language-cpp">
+    class STATE_MACHINE
+    {
+        public:
+            void Update( const float dt )
+            {
+                if ( m_current_state )
+                {
+                    m_current_state->Update( dt );
+                }
+            }
+
+            void ChangeState( STATE* new_state )
+            {
+                if ( m_current_state )
+                {
+                    m_current_state->Exit();
+                }
+
+                m_current_state = new_state;
+
+                if ( m_current_state )
+                {
+                    m_current_state->Enter();
+                }
+            }
+
+        private:
+            STATE* m_current_state = nullptr;
+    };
+                </code>
+            </pre>            
+        </p>
     </div>
 
     <div class="footer">
