@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../../styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
-    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>      
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/mermaid@8.14.0/dist/mermaid.min.js"></script>
 </head>
 
@@ -51,94 +51,76 @@
         </p>
     </div>
     <div class="mermaid" style="margin-left:60px">
-graph LR;
-A[ATTENTE] --press jump--> B[SAUT];
-B --> A;
+        graph LR;
+        A[ATTENTE] --press jump--> B[SAUT];
+        B --> A;
     </div>
     <div>
-        <p>Dans cet exemple, notre machine à états (State Machine) possède deux états distincts.
-            <br />
-            Nous allons donc ajouter ces deux états dans notre code.
-            <br />
+        <p>Dans cet exemple, notre machine à états (State Machine) possède deux états distincts.<br />
+            Nous allons donc ajouter ces deux états dans notre code.<br />
             Cependant, avant d'ajouter la classe STATE (état), il est important de noter que ATTENTE et SAUT sont des
-            réalisations du concept d'état.
-            <br />
+            réalisations du concept d'état.<br />
             En C++, pour illustrer cette idée, nous utilisons les classes abstraites. Une classe abstraite est une
-            classe dont on ne peut pas instancier car certaines fonctions n'ont pas
-            de définition. Dans notre cas, le concept d'état se présente sous la forme d'une classe abstraite. Les
-            fonctions d'entrée, mise à jour et sortie ne seront pas spécifiées, mais
-            elles seront définies dans les classes dérivées.
+            classe dont on ne peut pas instancier car certaines fonctions n'ont pas de définition. Dans notre cas, le
+            concept d'état se présente sous la forme d'une classe abstraite. Les
+            fonctions d'entrée, mise à jour et sortie ne seront pas spécifiées, mais elles seront définies dans les
+            classes dérivées.
         </p>
-        <pre class="prettyprint">
-<code class="language-cpp">
+        <pre class="prettyprint"><code class="language-cpp">
     class STATE
     {
         public:
-            virtual void Enter() = 0;
-            virtual void Update( float dt ) = 0;
-            virtual void Exit() = 0;
+            virtual void Enter() = 0; // permet d'initialiser l'etat
+            virtual void Update( const float dt ) = 0;
+            virtual void Exit() = 0; // permet de nettoyer l'etat
     };
-</code>
-</pre>
+        </code></pre>
 
-        <p>On note l'apparition de mots-clés <code>virtual</code>, ainsi que <code>= 0</code>. Pour en savoir plus sur les fonctions
+        <p>On note l'apparition de mots-clés <code>virtual</code>, ainsi que <code>= 0</code>. Pour en savoir plus sur
+            les fonctions
             virtuelles et les vtables, je vous recommande de consulter le lien
-            suivant : <a href="https://blog.darbotron.com/the-lost-c-c-low-level-curriculum-e1bb290d29e">https://blog.darbotron.com/c-low-level</a>.<br />
-            La classe STATE est donc <b>abstraite</b> (aussi appelée Interface, donc souvent nommée ISTATE), et il n'est pas
-            possible de créer d'objet à partir d'elle.<br/>
+            suivant : <a
+                href="https://blog.darbotron.com/the-lost-c-c-low-level-curriculum-e1bb290d29e">https://blog.darbotron.com/c-low-level</a>.<br />
+            La classe STATE est donc <b>abstraite</b> (aussi appelée Interface, donc souvent nommée ISTATE), et il n'est
+            pas
+            possible de créer d'objet à partir d'elle.<br />
             Nous avons besoin d'avoir des classes enfants qui définiront les fonctions notées <code>= 0</code>.</p>
         <p>Le code pour créer les classes état d'attente et état de saut est le suivant :</p>
         <p>
-            <pre class="prettyprint">
-                <code class="language-cpp">
+        <pre class="prettyprint"><code class="language-cpp">
     class IDLE final : public STATE
     {
         public:
-        void Enter() override
-        {
-        }
+        void Enter() override { }
 
-        void Update( float dt ) override
+        void Update( const float dt ) override
         {
             // if m_is_jumping is false and we are pressing the jump button
             // set next state to jump
         }
 
-        void Exit() override
-        {
-        }
+        void Exit() override { }
 
         private:
             bool m_is_jumping = false;
     };
                 </code>
             </pre>
-            <pre class="prettyprint">
-                <code class="language-cpp">
+        <pre class="prettyprint"><code class="language-cpp">
     class JUMP final : public STATE
     {
         public:
-            void Enter() override
-            {
-            }
-
-            void Update( float dt ) override
-            {
-            }
-
-            void Exit() override
-            {
-            }
+            void Enter() override { }
+            void Update( const float dt ) override { }
+            void Exit() override { }
     };
-                </code>
-            </pre>
+                </code></pre>
         </p>
 
         <p>
-            Nous avons besoin de créer une classe STATE_MACHINE qui contiendra les états et leurs transitions.<br/>
+            Nous avons besoin de créer une classe STATE_MACHINE qui contiendra les états et leurs transitions.<br />
             Cette classe doit pouvoir ajouter et retirer des états à la machine (changer l'etat courant).
-            <pre class="prettyprint">
-                <code class="language-cpp">
+        <pre class="prettyprint"><code class="language-cpp">
     class STATE_MACHINE
     {
         public:
@@ -154,6 +136,7 @@ B --> A;
             {
                 if ( m_current_state )
                 {
+                    // on a un etat en cours, on sort
                     m_current_state->Exit();
                 }
 
@@ -161,6 +144,7 @@ B --> A;
 
                 if ( m_current_state )
                 {
+                    // on a un nouvel etat en cours, on entre
                     m_current_state->Enter();
                 }
             }
@@ -168,9 +152,93 @@ B --> A;
         private:
             STATE* m_current_state = nullptr;
     };
-                </code>
-            </pre>            
+                </code></pre>
         </p>
+
+        <p>
+            Maintenant que nous avons les états et la machine à états, il est temps de compléter la classe AGENT.</p>
+        <pre class="prettyprint"><code class="language-cpp">
+    class AGENT
+    {
+        ...
+
+        private:
+            std::unique_ptr< STATE_MACHINE > m_state_machine = nullptr;
+    };
+            </code></pre>
+        <p>
+            L'utilisation des smart pointers <code>std::unique_ptr</code> nous permet de gérer la mémoire
+            automatiquement.
+            Mais nous devons créer le pointeur à la création de l'objet AGENT, donc au moment de l'appel du
+            constructeur.<br />
+            Le destructeur du pointeur sera automatiquement appelé à l'appel du destructeur de l'object AGENT.<br />
+            Pour plus d'informations, n'hésitez pas à lire <a
+                href="https://www.oreilly.com/library/view/effective-modern-c/9781491908419/">Effective Modern C++</a>.
+        </p>
+        <pre class="prettyprint"><code class="language-cpp">
+    // dans agent.cpp
+
+    AGENT::AGENT()
+        : m_state_machine( std::make_unique< STATE_MACHINE >() )
+    { }
+            </code></pre>
+        <p>Ajoutons un etat par default, qui fait "parler" l'agent toutes les 5 secondes.</p>
+
+        <pre class="prettyprint"><code class="language-cpp">
+                // dans agent.cpp
+
+    AGENT::AGENT()
+        : m_state_machine( std::make_unique< STATE_MACHINE >() )
+    {
+        m_state_machine->ChangeState( new TALK_STATE );
+    }
+            </code></pre>
+        <pre class="prettyprint"><code class="language-cpp">
+    class TALK_STATE : public STATE
+    {
+        public:
+            void Enter() override
+            {
+                m_timer = 0.0f; // initialisation du timer à 0
+            }
+
+            void Update( const float dt ) override
+            {
+                // une variable static qui permet de debugger le programme
+                static float total_dt = 0.0f;
+                total_dt +=dt;
+
+                m_timer += dt;
+                if ( m_timer > 5000.0f )
+                {
+                    std::cout << "Je parle (total time: " << total_dt << ")" << std::endl;
+                    m_timer = 0.0f;
+                }
+            }
+
+            void Exit() override
+            {
+                m_timer = 0.0f; // initialisation du timer à 0 (optionnel)
+            }
+    };
+            </code></pre>
+        <p>
+            Nous constatons que changer le comportement de l'agent devient trivial. En effet, il suffit juste de faire
+            évoluer les états dans la STATE_MACHINE pour ajouter ou enlever des comportements.<br />
+            Tout la gestion de l'action est contenue dans l'état. Ce qui nous permet d'éviter de recompiler le code de
+            l'agent à chaque changement dans l'état.
+            Ou encore de rajouter à la volée des états. Le système est très dynamique et chaque partie est indépendante.
+            C'est pour cela que les machines à états sont tellement utilisées dans les jeux.
+            La limite de ce système est que tout devient très complexe à force de rajouter des états et les
+            interconnexions entre ces états.
+            C'est pourquoi l'on cherche toujours de nouveaux systèmes (comme les HFSM, comportements en arbre, HTN,
+            GOAP, etc.)
+        </p>
+        <p>Et le résultat:</p>
+        <p><img src="../img/result_state_machine.png" alt="Résultat STATE MACHINE"></p>
+
+		<p>Maintenant, on va ajouter un système de <a href="zero2heros_jour3.html">messages</a>. Cela nous permettra de faire "discuter" les agents entre eux.
+		</p>
     </div>
 
     <div class="footer">
