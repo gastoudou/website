@@ -17,6 +17,7 @@ hr {
 a {
     color: black;
 }
+
 a:hover {
     color: rgb(200, 0, 0);
 }
@@ -30,6 +31,9 @@ a:hover {
     text-align: center;
 }
 
+mark {
+    background-color: #E5E4E2;
+}
 .header {
     background-color: #E5E4E2;
     width: 100%;
@@ -39,11 +43,11 @@ a:hover {
     left: 0;
 }
 
-.header a{
+.header a {
     text-decoration: none;
 }
 
-h1{
+h1 {
     font-size: 50px;
 }
 
@@ -53,27 +57,47 @@ ul {
 
 li a {
     margin: 5px;
-   }
-   
-th, td {
-  padding: 15px;
 }
 
-blockquote
-{
-  font-style: italic;
-  font-size: 16px;
-  margin-left: 40px;
-  border-left: 8px solid #CCC;
-  padding-left: 12px;
+table, th, td {
+    border: 10px solid;
+    border-color: #E5E4E2;
+}
+
+table {
+    margin: 65px;
+}
+
+th,
+td {
+    padding: 25px;
+    text-align: left;
+    color: white;
+    height: 50%;
+    width: 30%;
+    background-size: 100% 100%;
+    height: 150px
+}
+
+blockquote {
+    font-style: italic;
+    font-size: 16px;
+    margin-left: 40px;
+    border-left: 8px solid #CCC;
+    padding-left: 12px;
 }
 
 img {
     max-width: 80%;
-  }
-  
+}
+
 pre {
     white-space: pre-wrap;
     margin: 65px;
     max-width: 50%;
+}
+
+.center {
+    margin-left: auto;
+    margin-right: auto;
   }
