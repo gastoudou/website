@@ -183,16 +183,6 @@
     { }
             </code></pre>
         <p>Ajoutons un etat par default, qui fait "parler" l'agent toutes les 5 secondes.</p>
-
-        <pre class="prettyprint"><code class="language-cpp">
-                // dans agent.cpp
-
-    AGENT::AGENT()
-        : m_state_machine( std::make_unique< STATE_MACHINE >() )
-    {
-        m_state_machine->ChangeState( new TALK_STATE );
-    }
-            </code></pre>
         <pre class="prettyprint"><code class="language-cpp">
     class TALK_STATE : public STATE
     {
