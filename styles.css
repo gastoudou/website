@@ -79,6 +79,10 @@ td {
     height: 150px
 }
 
+td {
+    width: 300px;
+}
+
 blockquote {
     font-style: italic;
     font-size: 16px;
