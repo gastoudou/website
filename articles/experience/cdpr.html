@@ -6,7 +6,9 @@
 <head>
     <link rel="stylesheet" href="../../styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="shortcut icon" type="image/x-icon" href="../../favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@8.14.0/dist/mermaid.min.js"></script>
 </head>
 
 <body>
@@ -27,10 +29,33 @@
         <p>&nbsp;</p>
         <p>&nbsp;</p>
         <p><b>Technical Dive : <u>CDPR - CP77</u></b></p>
-        <p>
-            Intro vehicule AI programmeur.<br />
-            BT mais rien de pret pour les voitures.
-        </p>
+        <p>Après un projet VRally4 qui a été plus ou moins réussi, je suis passé chez CD Projekt Red pour travailler sur l'IA
+            des véhicules.
+            Cela concernait les voitures, les motos et les camions.<br/>
+        Toutes les fois que le joueur est transporté par un PNJ (personnage non jouable), l'IA prend le contrôle.<br/>
+        Lorsque j'ai rejoint le projet, rien n'était prêt pour les véhicules dans le jeu. La démo présentée à l'E3 utilisait
+            des splines et des animations pré-calculées pour montrer un semblant de trafic
+            routier.<br/>
+        Le seul système présent était le système de Behaviours Tree pour les piétons, que nous voulions également utiliser
+            pour les véhicules.</p>
+
+            <div class="mermaid" style="margin-left:60px">
+                flowchart TD
+                RACINE --> SELECTION
+                SELECTION --> SEQUENCE1
+                SEQUENCE1 --> ACTION1
+                SELECTION --> SEQUENCE2
+                SEQUENCE2 --> ACTION2
+                subgraph ACTION1
+                    direction LR
+                    ACTION11 --> ACTION12
+                end
+                subgraph ACTION2
+                    direction LR
+                    ACTION21 --> ACTION22
+                end            
+            </div>
+
         <hr>
         <p>
             prototype : steering behaviors
@@ -38,6 +63,7 @@
         <hr>
         <p>
             production : PID system (le mieux pour simuler une personne qui jouerait a la manette)
+            https://youtu.be/wkfEZmsQqiA?si=aI_GrwFMpS7pf7Ts
         </p>
         <hr>
         <p>
